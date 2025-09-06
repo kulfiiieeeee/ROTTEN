@@ -23,10 +23,14 @@
     text-shadow: 0 0 10px #ff4c4c;
   }
 
+  /* Entry Boxes */
   .entry {
-    border-left: 3px solid #ff4c4c;
-    padding-left: 20px;
-    margin-bottom: 40px;
+    background: #1a1a1a;
+    border: 2px solid #ff4c4c;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(255, 76, 76, 0.4);
   }
 
   .entry h2 {
@@ -46,22 +50,111 @@
   a:hover {
     color: #ffdddd;
   }
+
+  /* Admin Form */
+  #adminForm, #entryForm {
+    background: #111;
+    border: 2px dashed #ff7777;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    display: none;
+  }
+
+  input, textarea, button {
+    font-family: 'Orbitron', monospace;
+    background: #222;
+    color: #eee;
+    border: 1px solid #ff7777;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  button {
+    cursor: pointer;
+    background: #ff4c4c;
+    color: #fff;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    background: #ff7777;
+  }
 </style>
 </head>
 <body>
 
 <h1>ROTTEN Journal</h1>
 
-<div class="entry">
-  <h2>Entry #1: Ballistics</h2>
-  <p>Date: 6th September 2025</p>
-  <p>
-  Ballistics- The science of studying projectiles in motion, ballistics, being applied to law. Ballistics on firearm projectiles, such as bullets, include the study of what happens inside the weapon, during the flight of the projectile, and when the projectile strikes the target, such as body tissue.
-  </p>
+<!-- Existing Entries -->
+<div id="entries">
+  <div class="entry">
+    <h2>Entry #1: Ballistics</h2>
+    <p><em>Date: 6th September 2025</em></p>
+    <p>
+      Ballistics- The science of studying projectiles in motion, ballistics, being applied to law. Ballistics on firearm projectiles, such as bullets, include the study of what happens inside the weapon, during the flight of the projectile, and when the projectile strikes the target, such as body tissue.
+    </p>
+  </div>
 </div>
 
+<!-- Admin Login -->
+<div id="adminForm">
+  <p>Enter Admin Code:</p>
+  <input type="password" id="adminCode">
+  <button onclick="checkAdmin()">Unlock</button>
+</div>
+
+<!-- Entry Form (hidden until admin unlocks) -->
+<div id="entryForm">
+  <h2>Add New Entry</h2>
+  <input type="text" id="title" placeholder="Entry Title">
+  <input type="text" id="date" placeholder="Date (e.g., 6th September 2025)">
+  <textarea id="content" placeholder="Write your entry..." rows="5"></textarea>
+  <button onclick="addEntry()">Add Entry</button>
+</div>
 
 <p>Back to <a href="index.html">Home</a>.</p>
 
+<script>
+  // Show admin login
+  document.getElementById('adminForm').style.display = 'block';
+
+  function checkAdmin() {
+    const code = document.getElementById('adminCode').value;
+    const correctCode = "rotten123"; // <<< CHANGE THIS CODE
+    if (code === correctCode) {
+      document.getElementById('adminForm').style.display = 'none';
+      document.getElementById('entryForm').style.display = 'block';
+    } else {
+      alert("Incorrect admin code!");
+    }
+  }
+
+  function addEntry() {
+    const title = document.getElementById('title').value;
+    const date = document.getElementById('date').value;
+    const content = document.getElementById('content').value;
+
+    if (title && date && content) {
+      const entryDiv = document.createElement("div");
+      entryDiv.classList.add("entry");
+      entryDiv.innerHTML = `
+        <h2>${title}</h2>
+        <p><em>Date: ${date}</em></p>
+        <p>${content}</p>
+      `;
+      document.getElementById("entries").prepend(entryDiv);
+
+      // Clear inputs
+      document.getElementById('title').value = "";
+      document.getElementById('date').value = "";
+      document.getElementById('content').value = "";
+    } else {
+      alert("Please fill in all fields!");
+    }
+  }
+</script>
 </body>
 </html>
