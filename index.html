@@ -3,23 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROTTEN | Space Engineering Journal</title>
-<!-- Google Font for mechanical/futuristic vibe -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<title>ROTTEN | Engineering Journal</title>
+
+<!-- Futuristic fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
 <style>
   /* Reset */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background-color: #0d0d0d;
+    background-color: #0a0a0a;
     color: #eee;
-    font-family: 'Orbitron', monospace;
+    font-family: 'Share Tech Mono', monospace;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     text-align: center;
+    overflow: hidden;
   }
 
   header {
@@ -27,16 +30,21 @@
   }
 
   h1 {
+    font-family: 'Orbitron', sans-serif;
     font-size: 4rem;
     color: #ff4c4c;
+    text-shadow: 
+      0 0 10px #ff4c4c, 
+      0 0 20px #ff0000, 
+      0 0 30px #ff4c4c;
     margin-bottom: 10px;
-    text-shadow: 0 0 10px #ff4c4c, 0 0 20px #ff0000;
+    animation: flicker 3s infinite;
   }
 
   p {
-    font-size: 1.2rem;
-    color: #ccc;
-    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: #9effff;
+    margin-bottom: 20px;
   }
 
   .rocket {
@@ -44,11 +52,13 @@
     cursor: pointer;
     display: inline-block;
     transition: transform 2s, text-shadow 2s;
+    color: #77ff77;
+    text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
   }
 
   .rocket.fly {
     transform: translateY(-500px) rotate(15deg);
-    text-shadow: 0 0 20px orange, 0 0 40px red, 0 0 60px yellow;
+    text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffaa;
   }
 
   nav {
@@ -56,42 +66,61 @@
   }
 
   nav a {
-    color: #ff7777;
+    color: #ff77ff;
     text-decoration: none;
     margin: 0 15px;
     font-size: 1.1rem;
-    transition: color 0.3s;
+    transition: 0.3s;
   }
 
   nav a:hover {
-    color: #ffdddd;
+    color: #fff;
+    text-shadow: 0 0 5px #ff77ff, 0 0 10px #ff44ff;
   }
 
   footer {
     position: absolute;
     bottom: 10px;
     font-size: 0.8rem;
-    color: #888;
+    color: #555;
+  }
+
+  /* Flicker animation for title */
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 22%, 24%, 55% { opacity: 0.3; }
+  }
+
+  /* Background grid (subtle) */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(transparent 97%, rgba(0,255,170,0.1) 98%),
+                linear-gradient(90deg, transparent 97%, rgba(255,77,77,0.1) 98%);
+    background-size: 50px 50px;
+    z-index: -1;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>ROTTEN 🔧</h1>
-  <p>Directed by R.T.R — Engineering Journal</p>
+  <h1>ROTTEN ⚙</h1>
+  <p>DIRECTED BY R.T.R</p>
   <div class="rocket" onclick="launchRocket()">🚀</div>
-  <p>Click the rocket to launch!</p>
+  <p>Click to initiate LAUNCH SEQUENCE</p>
 </header>
 
 <nav>
-  <a href="#">Journal</a>
-  <a href="#">Projects</a>
-  <a href="#">About</a>
+  <a href="journal.html">Journal</a>
+  <a href="projects.html">Projects</a>
+  <a href="about.html">About</a>
 </nav>
 
 <footer>
-  📝 Engineering logs updated weekly
+  SYSTEM LOG — Engineering Records © 2025
 </footer>
 
 <script>
