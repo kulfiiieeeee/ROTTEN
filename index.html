@@ -1,135 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROTTEN | Engineering Journal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROTTEN | Neon Engineering Journal</title>
+  <style>
+    /* --- Background --- */
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("assets/playroom-bg.png") repeat;
+      background-size: 200px 200px;
+      background-color: #0a0a0a;
+      background-blend-mode: overlay;
+      animation: drift 120s linear infinite;
+      color: #fff;
+      font-family: "Arial", sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-<!-- Futuristic fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    @keyframes drift {
+      from { background-position: 0 0; }
+      to   { background-position: 500px 500px; }
+    }
 
-<style>
-  /* Reset */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* --- Overlay --- */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      pointer-events: none;
+      z-index: -1;
+    }
 
-  body {
-    background-color: #0a0a0a;
-    color: #eee;
-    font-family: 'Share Tech Mono', monospace;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    overflow: hidden;
-  }
+    /* --- Header --- */
+    header {
+      padding: 60px 20px;
+    }
 
-  header {
-    padding: 20px;
-  }
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+      color: #ff0033; /* NGE red */
+      text-shadow: 0 0 15px #ff0033, 0 0 30px #ff0055;
+    }
 
-  h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 4rem;
-    color: #ff4c4c;
-    text-shadow: 
-      0 0 10px #ff4c4c, 
-      0 0 20px #ff0000, 
-      0 0 30px #ff4c4c;
-    margin-bottom: 10px;
-    animation: flicker 3s infinite;
-  }
+    p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #d0d0d0;
+    }
 
-  p {
-    font-size: 1.1rem;
-    color: #9effff;
-    margin-bottom: 20px;
-  }
+    /* --- Rocket --- */
+    .rocket {
+      font-size: 4rem;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 20px;
+      transition: transform 2s;
+      filter: drop-shadow(0 0 10px #00ffea);
+    }
 
-  .rocket {
-    font-size: 5rem;
-    cursor: pointer;
-    display: inline-block;
-    transition: transform 2s, text-shadow 2s;
-    color: #77ff77;
-    text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
-  }
+    .rocket.fly {
+      transform: translateY(-500px);
+    }
 
-  .rocket.fly {
-    transform: translateY(-500px) rotate(15deg);
-    text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffaa;
-  }
+    /* --- Nav --- */
+    nav {
+      margin-top: 40px;
+    }
 
-  nav {
-    margin-top: 40px;
-  }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #00ffea;
+      text-shadow: 0 0 8px #00ffea;
+      transition: color 0.3s;
+    }
 
-  nav a {
-    color: #ff77ff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.1rem;
-    transition: 0.3s;
-  }
+    nav a:hover {
+      color: #ff77ff;
+      text-shadow: 0 0 12px #ff77ff;
+    }
 
-  nav a:hover {
-    color: #fff;
-    text-shadow: 0 0 5px #ff77ff, 0 0 10px #ff44ff;
-  }
-
-  footer {
-    position: absolute;
-    bottom: 10px;
-    font-size: 0.8rem;
-    color: #555;
-  }
-
-  /* Flicker animation for title */
-  @keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-    20%, 22%, 24%, 55% { opacity: 0.3; }
-  }
-
-  /* Background grid (subtle) */
-  body::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(transparent 97%, rgba(0,255,170,0.1) 98%),
-                linear-gradient(90deg, transparent 97%, rgba(255,77,77,0.1) 98%);
-    background-size: 50px 50px;
-    z-index: -1;
-  }
-</style>
+  </style>
 </head>
 <body>
+  <header>
+    <h1>ROTTEN</h1>
+    <p>Directed by R.T.R</p>
+    <div class="rocket" onclick="launchRocket()">🚀</div>
+    <p>Click the rocket to launch!</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="journal.html">Journal</a>
+    </nav>
+  </header>
 
-<header>
-  <h1>ROTTEN ⚙</h1>
-  <p>DIRECTED BY R.T.R</p>
-  <div class="rocket" onclick="launchRocket()">🚀</div>
-  <p>Click to initiate LAUNCH SEQUENCE</p>
-</header>
-
-<nav>
-  <a href="journal.html">Journal</a>
-  <a href="projects.html">Projects</a>
-  <a href="about.html">About</a>
-</nav>
-
-<footer>
-  SYSTEM LOG — Engineering Records © 2025
-</footer>
-
-<script>
-function launchRocket() {
-  const rocket = document.querySelector('.rocket');
-  rocket.classList.add('fly');
-  setTimeout(() => rocket.classList.remove('fly'), 2000);
-}
-</script>
-
+  <script>
+    function launchRocket() {
+      const rocket = document.querySelector('.rocket');
+      rocket.classList.add('fly');
+      setTimeout(() => rocket.classList.remove('fly'), 2000);
+    }
+  </script>
 </body>
 </html>
+
