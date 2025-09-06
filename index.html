@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROTTEN | Space Engineering Journal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    header {
+      padding: 50px 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    .rocket {
+      font-size: 4rem;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 20px;
+      transition: transform 2s;
+    }
+    .rocket.fly {
+      transform: translateY(-500px);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ROTTEN 🚀</h1>
+    <p>My Engineering Journal into Space Exploration</p>
+    <div class="rocket" onclick="launchRocket()">🚀</div>
+    <p>Click the rocket to launch!</p>
+  </header>
+
+  <script>
+    function launchRocket() {
+      const rocket = document.querySelector('.rocket');
+      rocket.classList.add('fly');
+      setTimeout(() => rocket.classList.remove('fly'), 2000);
+    }
+  </script>
+</body>
+</html>
 
