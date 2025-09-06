@@ -7,8 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <style>
   body {
-    background-color: #0d0d0d;
-    color: #eee;
+    background: linear-gradient(135deg, #ffb6f9, #ffe6f7, #ffd1f3, #ffc4fa);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    color: #fff;
     font-family: 'Orbitron', monospace;
     display: flex;
     flex-direction: column;
@@ -17,25 +19,67 @@
     min-height: 100vh;
     text-align: center;
     padding: 50px;
+    overflow: hidden;
   }
+
+  @keyframes gradientShift {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
   h1 {
-    color: #ff4c4c;
+    color: #fff;
     font-size: 3rem;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px #ff4c4c;
+    text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493;
+    animation: sparkle 2s infinite alternate;
   }
+
+  @keyframes sparkle {
+    from {text-shadow: 0 0 10px #ff69b4;}
+    to {text-shadow: 0 0 20px #ff1493, 0 0 40px #ff69b4;}
+  }
+
   p {
     max-width: 700px;
     line-height: 1.6;
-    font-size: 1.1rem;
-    color: #ccc;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #ff69b4;
   }
+
   a {
-    color: #ff7777;
+    color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    background: rgba(255, 105, 180, 0.7);
+    padding: 8px 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff69b4;
+    transition: transform 0.3s ease;
   }
+
   a:hover {
-    color: #ffdddd;
+    background: #ff69b4;
+    transform: scale(1.2) rotate(-3deg);
+  }
+
+  /* Floating Emojis */
+  .emoji {
+    position: absolute;
+    font-size: 2rem;
+    animation: floaty 6s infinite ease-in-out;
+    opacity: 0.8;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  @keyframes floaty {
+    0% {transform: translateY(100vh) scale(1);}
+    50% {transform: translateY(50vh) scale(1.2);}
+    100% {transform: translateY(-10vh) scale(1);}
   }
 </style>
 </head>
@@ -43,14 +87,47 @@
 
 <h1>About ROTTEN 🔧</h1>
 <p>
-Welcome to ROTTEN. Here, I log experiments, sketches, and ideas inspired by mechanical & aerospace engineering, ballistics, and futuristic space concepts.  
+Welcome to <b>ROTTEN archives</b> 🌸✨ a dreamy lil corner of the internet 🌌
 </p>
 <p>
-This site is a digital workshop — a place for curiosity, exploration, and creativity. Dive in, explore the journal entries, and follow the trajectory of ROTTEN.  
+An initiative by <b>v4mpk1ttie :3</b> 🐾💖 pspsps ~ nyaaaa 😺
 </p>
 <p>
 Back to <a href="index.html">Home</a>.
 </p>
+
+<!-- Floating Emojis -->
+<div class="emoji" style="left:10%;">                             ＿＿
+　　　　　🌸＞　　フ
+　　　　　| 　_　 _ l
+　 　　　／` ミ＿xノ
+　　 　 /　　　 　 |
+　　　 /　 ヽ　　 ﾉ
+　 　 │　　|　|　|
+　／￣|　　 |　|　|
+　| (￣ヽ＿_ヽ_)__)
+　＼二つ</div>
+<div class="emoji" style="left:25%;">✨</div>
+<div class="emoji" style="left:40%;">🌸</div>
+<div class="emoji" style="left:55%;">💖</div>
+<div class="emoji" style="left:70%;">🐾</div>
+<div class="emoji" style="left:85%;">⠀⠀  ⡠⠒⢄  ⠀⠀   ᨘ⡴⠒⢦⣀⠔⠒⢄
+⠀⠀ ⡏  ⠀ ⠉⠉⠉⣽⠀⢴⣷⠛⢲⠶⠚⣄
+⠀⠀ ⢸ ⠀⠀⠀  ⠀⠀⠓⠚⠛⠤⡞⠛⠀⡞
+ ⠀⠀⢸ ⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀ᱸ⠉⢉⣇⣀⣀
+  ⠉⠉⣇⡀   ⣶⠀⠀  ⣀⠀⠀  ⣶⠀⠀⣾⠤⠤
+ ⢎ ⠡⠨ ⣃⡀ ⠀⠀⠀⠉⠀⠀⠀      ⡸⠒⠒
+   ⢸⢴⠉⠂⣘ᱸ⠖⢶⠒⠒⡶⢲⠒⡞⢣
+⠀ ᱸ⠢⣉⣁⠜⠒⢄  ⠉⠉⠀⡠⠋⠉⠉
+⠀⠀               ⠑⠒⠓⠒ᱸ</div>
+
+<script>
+  // Randomize emoji float speeds
+  document.querySelectorAll('.emoji').forEach(emoji => {
+    emoji.style.animationDuration = (4 + Math.random() * 6) + "s";
+    emoji.style.fontSize = (1.5 + Math.random() * 2.5) + "rem";
+  });
+</script>
 
 </body>
 </html>
