@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ROTTEN | Neon Engineering Journal</title>
+  <title>ROTTEN | Cute Chaos Journal</title>
   <style>
     /* --- Background --- */
     body {
@@ -11,61 +11,70 @@
       padding: 0;
       background: url("assets/playroom-bg.png") repeat;
       background-size: 200px 200px;
-      background-color: #0a0a0a;
-      background-blend-mode: overlay;
-      animation: drift 120s linear infinite;
-      color: #fff;
-      font-family: "Arial", sans-serif;
+      background-color: #ffccf9;
+      animation: drift 60s linear infinite;
+      font-family: "Comic Sans MS", cursive, sans-serif;
       text-align: center;
       overflow-x: hidden;
+      position: relative;
     }
 
     @keyframes drift {
       from { background-position: 0 0; }
-      to   { background-position: 500px 500px; }
-    }
-
-    /* --- Overlay --- */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.65);
-      pointer-events: none;
-      z-index: -1;
+      to   { background-position: 300px 300px; }
     }
 
     /* --- Header --- */
     header {
-      padding: 60px 20px;
+      padding: 50px 20px;
     }
 
     h1 {
-      font-size: 4rem;
+      font-size: 3.5rem;
       margin: 0;
-      color: #ff0033; /* NGE red */
-      text-shadow: 0 0 15px #ff0033, 0 0 30px #ff0055;
+      color: #ff4ddb;
+      text-shadow: 0 0 10px #ffb6f9, 0 0 20px #ff77ff, 0 0 30px white;
     }
 
     p {
       font-size: 1.2rem;
       margin-top: 10px;
-      color: #d0d0d0;
+      color: #444;
     }
 
-    /* --- Rocket --- */
-    .rocket {
-      font-size: 4rem;
+    /* --- Cat --- */
+    .cat {
+      font-size: 5rem;
       cursor: pointer;
       display: inline-block;
-      margin-top: 20px;
-      transition: transform 2s;
-      filter: drop-shadow(0 0 10px #00ffea);
+      margin-top: 30px;
+      transition: transform 0.2s;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ff77ff, 0 0 30px #ffb6f9;
     }
 
-    .rocket.fly {
-      transform: translateY(-500px);
+    .cat.spin {
+      animation: spin 0.3s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* --- NOOO text --- */
+    .nooo {
+      position: absolute;
+      font-size: 2rem;
+      color: #ff0033;
+      font-weight: bold;
+      text-shadow: 0 0 5px white, 0 0 15px #ff77ff;
+      animation: rise 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes rise {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to   { opacity: 0; transform: translateY(-150px) scale(1.5); }
     }
 
     /* --- Nav --- */
@@ -77,30 +86,23 @@
       margin: 0 15px;
       text-decoration: none;
       font-size: 1.1rem;
-      color: #00ffea;
-      text-shadow: 0 0 8px #00ffea;
+      color: #ff4ddb;
+      text-shadow: 0 0 5px #fff, 0 0 10px #ff77ff;
       transition: color 0.3s;
     }
 
     nav a:hover {
-      color: #ff77ff;
-      text-shadow: 0 0 12px #ff77ff;
+      color: #00c3ff;
+      text-shadow: 0 0 8px #00c3ff, 0 0 15px #fff;
     }
-
   </style>
 </head>
 <body>
   <header>
     <h1>ROTTEN</h1>
     <p>Directed by R.T.R</p>
-    <div class="rocket" onclick="launchRocket()">
-      ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ boop
-              へ         ╱|
-        ૮  -   ՛ ) つ(>   < 7 
-         /   ⁻  ៸          、˜〵
-  乀 (ˍ,  ل            じしˍ,)ノ 
-    </div>
-    <p>do not the cars</p>
+    <div class="cat" onclick="spinCat(event)">🐱</div>
+    <p>⚠️ Do NOT click the cat ⚠️</p>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -109,12 +111,25 @@
   </header>
 
   <script>
-    function launchRocket() {
-      const rocket = document.querySelector('.rocket');
-      rocket.classList.add('fly');
-      setTimeout(() => rocket.classList.remove('fly'), 2000);
+    function spinCat(event) {
+      const cat = event.target;
+      cat.classList.add('spin');
+
+      // Create NOOO text
+      const nooo = document.createElement('div');
+      nooo.className = 'nooo';
+      nooo.innerText = "NOOOOOOOOOOO";
+      nooo.style.left = (cat.getBoundingClientRect().left + window.scrollX + 20) + "px";
+      nooo.style.top = (cat.getBoundingClientRect().top + window.scrollY - 20) + "px";
+
+      document.body.appendChild(nooo);
+
+      // Remove after animation
+      setTimeout(() => {
+        nooo.remove();
+        cat.classList.remove('spin');
+      }, 2000);
     }
   </script>
 </body>
 </html>
-
